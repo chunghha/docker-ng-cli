@@ -1,0 +1,156 @@
+<td-layout sidenavWidth="312px" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'">
+  <td-navigation-drawer flex name="Super Mario" email="super.mario@gmail.com">
+    <mat-nav-list>
+      <a mat-list-item>
+        <mat-icon style="margin-right: 8px;">home</mat-icon>Home
+      </a>
+    </mat-nav-list>
+    <div td-navigation-drawer-menu>
+      <mat-nav-list>
+        <a mat-list-item>
+          <mat-icon style="margin-right: 8px;">account_box</mat-icon>Profile
+        </a>
+      </mat-nav-list>
+    </div>
+  </td-navigation-drawer>
+  <td-layout-nav navigationRoute="/">
+    <div td-toolbar-content layout="row">
+      <button mat-icon-button td-menu-button tdLayoutToggle>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+
+    <td-layout-card-over cardTitle="DockerNgCli" cardSubtitle="Card Over Layout Demo">
+      <mat-tab-group style="padding: 0 16px 8px 16px;">
+        <mat-tab label="Date Picker">
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button>Basic</button>
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button>
+            <button mat-raised-button color="warn">Warn</button>
+            <button mat-raised-button disabled>Disabled</button>
+          </div>
+          <mat-divider></mat-divider>
+          <div>
+            <p class="mat-body-1">Standalone message:</p>
+            <td-message label="Info!" sublabel="You have an instruction here!" color="primary" icon="help"></td-message>
+            <td-message label="Warning!" sublabel="You have a problem here!" color="deep-orange" icon="warning"></td-message>
+          </div>
+          <mat-divider></mat-divider>
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Country" aria-label="Country" [matAutocomplete]="auto" [formControl]="countryCtrl">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let country of filteredCountries | async" [value]="country.name">
+                  <img class="example-option-img" aria-hidden [src]="country.flag" width="45" height="30">
+                  <span>{{ country.name }}</span> |
+                  <small>Population: {{ country.population.toLocaleString('en') }}</small>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <br>
+            <mat-slide-toggle [checked]="countryCtrl.disabled" (change)="countryCtrl.disabled ? countryCtrl.enable() : countryCtrl.disable()">
+              Disable Input?
+            </mat-slide-toggle>
+          </form>
+        </mat-tab>
+
+        <mat-tab label="Data Table">
+          <div class="example-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource">
+
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let country">
+                  <img src={{country.flag}} width="45" height="30" style="margin-right: 8px;"> {{ country.name }}
+                </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="subregion">
+                <mat-header-cell *matHeaderCellDef> Region(Sub) </mat-header-cell>
+                <mat-cell *matCellDef="let country"> {{ country.subregion }} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="population">
+                <mat-header-cell *matHeaderCellDef> Population </mat-header-cell>
+                <mat-cell *matCellDef="let country"> {{ country.population.toLocaleString('en') }} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="capital">
+                <mat-header-cell *matHeaderCellDef> Capital </mat-header-cell>
+                <mat-cell *matCellDef="let country"> {{ country.capital }} </mat-cell>
+              </ng-container>
+
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]">
+            </mat-paginator>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Virtual Scroll">
+          <mat-list>
+            <mat-list-item class="example-list-item">
+              TD Virtual Scroll
+              <td-search-box backIcon="arrow_back" placeholder="Search countries" [(ngModel)]="searchInputTerm"
+                [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (searchDebounce)="searchCountries($event)"
+                (clear)="clearSearchTerm($event)">
+              </td-search-box>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <td-virtual-scroll-container #virtualScroll [style.height.px]="360" [data]="searchedCountries">
+              <ng-template let-row="row" let-last="last" tdVirtualScrollRow>
+                <mat-list-item>
+                  <img src={{row.flag}} width="45" height="30">
+                  <h4 matLine>{{ row.name }}</h4>
+                  <p matLine>Capital: {{ row.capital }} | Population: {{ row.population.toLocaleString('en') }}</p>
+                </mat-list-item>
+                <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+              </ng-template>
+            </td-virtual-scroll-container>
+          </mat-list>
+        </mat-tab>
+
+        <mat-tab label="Nested Grid">
+          <div class="wrapper">
+            <div class="box a">
+              <img src="https://picsum.photos/500/300?image=101" alt="Gallery image 1" class="grid-image">
+            </div>
+            <div class="box b">
+              <img src="https://picsum.photos/500/300?image=102" alt="Gallery image 2" class="grid-image">
+            </div>
+            <div class="box c">
+              <img src="https://picsum.photos/500/300?image=113" alt="Gallery image 3" class="grid-image">
+            </div>
+            <div class="box d">
+              <img src="https://picsum.photos/500/300?image=114" alt="Gallery image 4" class="grid-image">
+              <div class="box e">
+                <img src="https://picsum.photos/500/300?image=125" alt="Gallery image 5" class="grid-image">
+              </div>
+              <div class="box f">
+                <img src="https://picsum.photos/500/300?image=126" alt="Gallery image 6" class="grid-image">
+              </div>
+            </div>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="YouTube Player">
+          <div class="player-container">
+            <youtube-player videoId="PRQCAL_RMVo"></youtube-player>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+
+    </td-layout-card-over>
+  </td-layout-nav>
+</td-layout>
