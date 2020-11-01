@@ -1,28 +1,28 @@
 * {
-  a:hover,
-  a:active,
-  a:focus {
-    text-decoration: none;
-  }
+	a:hover,
+	a:active,
+	a:focus {
+		text-decoration: none;
+	}
 
-  &:active,
-  :focus {
-    outline: none !important;
-  }
+	&:active,
+	:focus {
+		outline: none !important;
+	}
 }
 
 label {
-  margin: 0;
+	margin: 0;
 }
 
 html,
 body {
-  height: 100%;
-  background: #e8eaf6;
+	background: #e8eaf6;
+	height: 100%;
 }
 
 code {
-  white-space: nowrap;
-  border-radius: 10px;
-  padding: 0 8px 1px 8px;
+	border-radius: 10px;
+	padding: 0 8px 1px;
+	white-space: nowrap;
 }

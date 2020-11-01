@@ -1,0 +1,74 @@
+{
+  "extends": [
+    "stylelint-config-recommended-scss",
+    "stylelint-config-standard",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-prettier"
+  ],
+  "plugins": [
+    "stylelint-scss",
+    "stylelint-order"
+  ],
+  "rules": {
+    "font-family-no-missing-generic-family-keyword": [
+      true,
+      {
+        "ignoreFontFamilies": ["FontAwesome"]
+      }
+    ],
+    "max-nesting-depth": [
+      2,
+      {
+        "ignore": [
+          "blockless-at-rules",
+          "pseudo-classes"
+        ]
+      }
+    ],
+    "order/order": [
+      "custom-properties",
+      "declarations"
+    ],
+    "order/properties-order": [
+      "width",
+      "height"
+    ],
+    "selector-max-id": [
+      1
+    ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "host"
+        ]
+      }
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": [
+          "ng-deep"
+        ]
+      }
+    ],
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": [
+          "attribute",
+          "class",
+          "id"
+        ]
+      }
+    ],
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignoreTypes": [
+          "td-layout-nav"
+        ]
+      }
+    ]
+  }
+}

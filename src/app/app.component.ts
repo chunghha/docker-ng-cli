@@ -1,18 +1,16 @@
+import { OverlayContainer } from '@angular/cdk/overlay';
 import { AfterViewInit, Component, HostBinding, OnDestroy, OnInit, VERSION, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { OverlayContainer } from '@angular/cdk/overlay';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { TdMediaService } from '@covalent/core/media';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
-import { AppState } from './store';
 import { CountryDataService } from './providers/country-data.service';
+import { AppState } from './store';
 import { AddFilter, RemoveFilter } from './store/actions/filter.action';
 
 export interface Country {
