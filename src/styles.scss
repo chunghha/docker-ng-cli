@@ -1,12 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@use '~@angular/material' as mat;
 @import './styles/styles-variables';
 
 @import '~normalize.css/normalize.css';
 
 @import './styles/styles-reset';
 
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '~@angular/material/theming';
 @import '~@covalent/core/common/platform.css';
 @import '~@covalent/core/theming/all-theme';
 
@@ -16,7 +15,7 @@
 
 @import './styles/styles-reset.scss-theme';
 
-@include angular-material-theme($app-light-theme);
+@include mat.all-component-themes($app-light-theme);
 @include covalent-theme($app-light-theme);
 
 @import './preload';

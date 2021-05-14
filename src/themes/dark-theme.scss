@@ -1,5 +1,6 @@
-$app-dark-primary: mat-palette($mat-grey, 700, 300, 900);
-$app-dark-accent: mat-palette($mat-blue-grey, 400);
-$app-dark-warn: mat-palette($mat-red, 500);
+@use '~@angular/material' as mat;
+$app-dark-primary: mat.define-palette(mat.$grey-palette, 700, 300, 900);
+$app-dark-accent: mat.define-palette(mat.$blue-grey-palette, 400);
+$app-dark-warn: mat.define-palette(mat.$red-palette, 500);
 
-$app-dark-theme: mat-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
+$app-dark-theme: mat.define-dark-theme($app-dark-primary, $app-dark-accent, $app-dark-warn);
