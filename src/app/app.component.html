@@ -104,7 +104,7 @@
               TD Virtual Scroll
               <td-search-box backIcon="arrow_back" placeholder="Search countries" [(ngModel)]="searchInputTerm"
                 [showUnderline]="true" [debounce]="500" [alwaysVisible]="false" (searchDebounce)="searchCountries($event)"
-                (clear)="clearSearchTerm($event)">
+                (clear)="clearSearchTerm()">
               </td-search-box>
             </mat-list-item>
             <mat-divider></mat-divider>

@@ -16,11 +16,13 @@ export const reducers: ActionReducerMap<AppState> = {
 export function logger(reducer: ActionReducer<AppState>): ActionReducer<AppState> {
 	return (state: AppState, action: any): any => {
 		const result = reducer(state, action);
+		/* eslint-disable no-console */
 		console.groupCollapsed(action.type);
 		console.log('prev state', state);
 		console.log('action', action);
 		console.log('next state', result);
 		console.groupEnd();
+		/* eslint-enable no-console */
 
 		return result;
 	};

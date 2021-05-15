@@ -1,5 +1,5 @@
 import { OverlayContainer } from '@angular/cdk/overlay';
-import { AfterViewInit, Component, HostBinding, OnDestroy, OnInit, VERSION, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostBinding, OnInit, VERSION, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -72,7 +72,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 		);
 	}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		this.setTheme();
 
 		this.setPlayerTag();
@@ -89,18 +89,18 @@ export class AppComponent implements AfterViewInit, OnInit {
 	 * Set the paginator after the view init since this component will
 	 * be able to query its view for the initialized paginator.
 	 */
-	ngAfterViewInit() {
+	ngAfterViewInit(): void {
 		this.dataSource.paginator = this.paginator;
 	}
 
-	searchCountries(name: string = ''): void {
+	searchCountries(name = ''): void {
 		this.store.dispatch(new AddFilter(name));
 		this.searchedCountries = this.countries.filter((country: Country) => {
 			return country.name.toLowerCase().indexOf(name.toLowerCase()) > -1;
 		});
 	}
 
-	clearSearchTerm(name: string = ''): void {
+	clearSearchTerm(): void {
 		this.searchedCountries = this.countries;
 		this.store.dispatch(new RemoveFilter());
 	}

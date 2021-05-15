@@ -10,9 +10,9 @@ export class AddFilter implements Action {
 	constructor(public payload: string) {}
 }
 
-// tslint:disable-next-line:max-classes-per-file
 export class RemoveFilter implements Action {
 	readonly type = FilterActions.REMOVE_FILTER;
+	/* eslint-disable-next-line @typescript-eslint/no-empty-function */
 	constructor() {}
 }
 
