@@ -33,6 +33,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 	version = VERSION.full;
 
 	isLinear = false;
+  layoutToggle = true;
 	firstFormGroup: FormGroup;
 	secondFormGroup: FormGroup;
 
